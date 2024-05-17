@@ -1,17 +1,74 @@
-import {View} from 'react-native';
-import {Button, Text} from 'react-native-paper';
+import React from "react";
+import {View} from "react-native";
+import {ActivityIndicator, Avatar, Button, Text, TextInput} from "react-native-paper";
 
-export default function HomeScreen() {
+import {Container} from "@/components/Container";
+
+export default function IndexScreen() {
+
+  const [user, setUser] = React.useState({
+    username: "duplxey",
+    email: "info@duplxey.com",
+    bio: "I am a full-stack developer. I like Django, React, and Docker.",
+  });
+  const [bio, setBio] = React.useState(user.bio);
+
+  const [error, setError] = React.useState<string | null>(null);
+  const [loading, setLoading] = React.useState(false);
+
+  const onSave = () => {
+    // TODO: save user bio
+  }
+
   return (
-    <View style={{
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-    }}>
-      <Text style={{marginBottom: 12}}>This is some text.</Text>
-      <Button icon="rocket" mode="contained" onPress={() => console.log('Pressed')}>
-        Back4app rocks!
-      </Button>
-    </View>
+    <Container>
+      {loading ? (
+        <ActivityIndicator
+          size="large"
+          animating={true}
+        />
+      ) : (
+        <>
+          <View
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              marginBottom: 24,
+            }}
+          >
+            <Avatar.Image
+              source={{uri: "https://i.ibb.co/4WdL9qC/avatar.png"}}
+              size={100}
+            />
+            <View style={{marginLeft: 12}}>
+              <Text variant="headlineLarge">
+                {user.username}
+              </Text>
+              <Text variant="headlineSmall">
+                {user.email}
+              </Text>
+            </View>
+          </View>
+          <TextInput
+            mode="outlined"
+            multiline
+            numberOfLines={4}
+            label="Bio"
+            value={bio}
+            onChangeText={value => setBio(value)}
+            style={{marginBottom: 12}}
+          />
+          {error && <Text style={{marginBottom: 12, color: "red"}}>{error}</Text>}
+          <Button
+            mode="contained"
+            icon="floppy"
+            onPress={onSave}
+          >
+            Save
+          </Button>
+        </>
+      )}
+    </Container>
   );
 }
