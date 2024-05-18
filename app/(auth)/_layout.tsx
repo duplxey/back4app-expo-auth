@@ -5,7 +5,7 @@ import {TabBarIcon} from "@/components/navigation/TabBarIcon";
 import {useColorScheme} from "@/hooks/useColorScheme";
 import {Colors} from "@/constants/Colors";
 
-export default function TabLayout() {
+export default function AuthLayout() {
   const colorScheme = useColorScheme();
 
   return (
@@ -15,11 +15,20 @@ export default function TabLayout() {
         headerShown: true,
       }}>
       <Tabs.Screen
-        name="profile"
+        name="login"
         options={{
-          title: "Profile",
+          title: "Login",
           tabBarIcon: ({color, focused}) => (
-            <TabBarIcon name={focused ? "person" : "person-outline"} color={color}/>
+            <TabBarIcon name={focused ? "log-in" : "log-in-outline"} color={color}/>
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="register"
+        options={{
+          title: "Register",
+          tabBarIcon: ({color, focused}) => (
+            <TabBarIcon name={focused ? "person-add" : "person-add-outline"} color={color}/>
           ),
         }}
       />

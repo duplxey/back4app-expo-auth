@@ -2,22 +2,35 @@ import React from "react";
 import {ActivityIndicator, Button, Text, TextInput} from "react-native-paper";
 
 import {Container} from "@/components/Container";
+import {useRouter} from "expo-router";
+import {useParse} from "@/hooks/useParse";
 
-export default function TabTwoScreen() {
+export default function LoginScreen() {
+
+  const router = useRouter();
+  const {parse, parseUser, isParseLoaded} = useParse();
 
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
-
-  const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState<string | null>(null);
 
-  const onLogin = () => {
-    // TODO: login
+  const onLogin = async () => {
+    if (!username || !password) {
+      setError("Please enter your username and password.");
+      return;
+    }
+    setError("");
+    try {
+      await parse.User.logIn(username, password);
+      router.push("/(tabs)/profile");
+    } catch (error: any) {
+      setError(error.message);
+    }
   }
 
   return (
     <Container>
-      {loading ? (
+      {!isParseLoaded ? (
         <ActivityIndicator
           size="large"
           animating={true}
