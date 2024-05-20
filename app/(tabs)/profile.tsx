@@ -1,50 +1,28 @@
-import React, {useEffect} from "react";
+import React from "react";
 import {View} from "react-native";
-import {ActivityIndicator, Avatar, Button, Text, TextInput} from "react-native-paper";
+import {Avatar, Button, Text, TextInput} from "react-native-paper";
 
 import {Container} from "@/components/Container";
 import {useRouter} from "expo-router";
-import {useParse} from "@/hooks/useParse";
 
 export default function IndexScreen() {
 
   const router = useRouter();
-  const {parse, parseUser, isParseLoaded} = useParse();
 
   const [bio, setBio] = React.useState<string>("");
   const [success, setSuccess] = React.useState<string | null>(null);
   const [error, setError] = React.useState<string | null>(null);
 
-  useEffect(() => {
-    if (!parseUser) return;
-    setBio(parseUser.get("bio") || "");
-  }, [parseUser]);
-
   const onSave = async () => {
-    if (!parseUser) return;
-    parseUser.set("bio", bio);
-    try {
-      await parseUser.save();
-      setSuccess("Bio saved successfully.");
-    } catch (error: any) {
-      setError(error.message);
-    }
+    // TODO: save bio
   }
 
   const onLogout = async () => {
-    router.replace("/(auth)/login");
-    await parse.User.logOut();
+    // TODO: logout
   }
 
   return (
     <Container>
-      {!isParseLoaded ? (
-        <ActivityIndicator
-          size="large"
-          animating={true}
-        />
-      ) : (
-        <>
           <View
             style={{
               display: "flex",
@@ -59,10 +37,10 @@ export default function IndexScreen() {
             />
             <View style={{marginLeft: 12}}>
               <Text variant="headlineLarge">
-                {parseUser!.getUsername()}
+                TODO: username
               </Text>
               <Text variant="headlineSmall">
-                {parseUser!.getEmail()}
+                TODO: email
               </Text>
             </View>
           </View>
@@ -92,8 +70,6 @@ export default function IndexScreen() {
           >
             Log out
           </Button>
-        </>
-      )}
     </Container>
   );
 }
