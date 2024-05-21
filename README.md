@@ -14,7 +14,7 @@ For more information check out the [article](#).
     ```
    
 3. Create a *.env* file in the root directory and add the following environment variables:
-    ```sh
+    ```dotenv
     EXPO_PUBLIC_APPLICATION_ID=<your-back4app-application-id>
     EXPO_PUBLIC_JAVASCRIPT_KEY=<your-back4app-client-key>
     ```
