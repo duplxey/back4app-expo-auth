@@ -32,7 +32,7 @@ export default function IndexScreen() {
             }}
           >
             <Avatar.Image
-              source={require('@/assets/images/avatar.png')}
+              source={require('@/assets/images/splash.png')}
               size={100}
             />
             <View style={{marginLeft: 12}}>
