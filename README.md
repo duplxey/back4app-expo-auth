@@ -2,7 +2,7 @@
 
 This repository demonstrates how to add [Back4app authentication](https://www.back4app.com/) to a [React Native](https://reactnative.dev/) ([Expo](https://expo.dev/)) app.
 
-For more information check out the [article](#).
+For more information check out the [article](https://blog.back4app.com/react-native-authentication/).
 
 ## Development Setup
 
